@@ -1,6 +1,11 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import { Oswald } from "next/font/google";
+import FloatingSocials from "@/components/FloatingSocials";
+
+
+const oswald = Oswald({ subsets: ["latin"], weight: ["400","500","700"] });
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -28,6 +33,7 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         {children}
+        <FloatingSocials />
       </body>
     </html>
   );
