@@ -8,7 +8,7 @@ interface Service {
   id: string;
   service: string;
   description: string;
-  price: number; // или duration, если заменишь
+  price: number;
 }
 
 export default function Services() {
@@ -52,7 +52,7 @@ export default function Services() {
               {/* dotted line */}
               <span className="flex-1 border-b border-dotted border-neutral-600"></span>
 
-              {/* price / time */}
+              {/* price */}
               <span className="text-lg text-yellow-100 font-bold whitespace-nowrap">
                 €{s.price}
               </span>
@@ -64,6 +64,23 @@ export default function Services() {
             </p>
           </div>
         ))}
+      </div>
+
+      {/* Fancy Book Button */}
+      <div className="flex justify-center mt-20">
+        <a
+          href="https://fresha.com/"
+          className="group relative inline-flex items-center gap-2 px-6 py-3 text-lg font-bold uppercase tracking-wider border-2 border-[#c8a46e]/50 bg-transparent text-[#c8a46e] overflow-hidden"
+        >
+          <span>BOOK NOW</span>
+          <span className="ml-1 transition-transform group-hover:translate-x-1">→</span>
+          
+          {/* Hover background */}
+          <div className="absolute inset-0 bg-white text-black opacity-0 group-hover:opacity-100 transition-all duration-300" />
+          
+          {/* Border glow */}
+          <div className="absolute inset-0 border-2 border-[#c8a46e] opacity-0 scale-110 group-hover:opacity-100 group-hover:scale-100 transition-all duration-300" />
+        </a>
       </div>
     </section>
   );

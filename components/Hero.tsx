@@ -12,12 +12,12 @@ export default function Hero() {
         muted
         className="absolute top-0 left-0 w-full h-full object-cover"
       >
-        <source src="https://black-jackbarbershop.com/wp-content/uploads/2024/07/Blackjack-Barber-Dubai.mp4" type="video/mp4" />
+        <source src="/bg_vid.MP4" type="video/mp4" />
         Ваш браузер не поддерживает видео.
       </video>
 
       {/* Темный градиент поверх видео */}
-      <div className="absolute top-0 left-0 w-full h-full bg-black/30"></div>
+      <div className="absolute top-0 left-0 w-full h-full bg-black/10"></div>
 
       {/* Контент поверх видео */}
       <div className="relative max-w-lg text-white z-10">
@@ -30,7 +30,7 @@ export default function Hero() {
         </p>
         <a
           href="https://fresha.com/"
-          className="inline-block px-10 py-4 text-xs border border-white rounded-lg hover:bg-yellow-400 hover:text-black transition-all duration-300"
+          className="inline-block px-10 py-4 text-md border border-white/30 bg-yellow-500 text-black font-bold transition-all duration-300 hover:bg-yellow-600"
         >
           ЗАПИСАТЬСЯ
         </a>

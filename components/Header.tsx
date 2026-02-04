@@ -8,7 +8,7 @@ import { Oswald } from "next/font/google";
 // Подключаем шрифт Oswald
 const oswald = Oswald({ subsets: ["latin"], weight: ["400","500","700"] });
 
-const LANGUAGES = ["ENG", "RUS", "DE"];
+const LANGUAGES = ["ENG", "DE", "FA", "RUS", "UKR"];
 
 export default function Header() {
   const [activeLang, setActiveLang] = useState("DE");
