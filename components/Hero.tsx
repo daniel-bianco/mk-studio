@@ -27,7 +27,7 @@ export default function Hero() {
           <source src="/bg_vid.MP4" type="video/mp4" />
         </video>
         {/* Градиент для глубины и читаемости текста */}
-        <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/20 to-transparent"></div>
+        <div className="absolute inset-0 bg-gradient-to-r from-black/30 via-black/20 to-transparent"></div>
       </div>
 
       {/* 🖋 Content Container */}
