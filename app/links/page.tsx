@@ -3,29 +3,33 @@
 import { useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+// Импорт иконок
 import { 
-  Instagram, 
-  Send, 
-  Phone,
-  CalendarCheck,
-  ShoppingBag,
-  MapPin
+  FaInstagram, 
+  FaTelegramPlane, 
+  FaWhatsapp 
+} from "react-icons/fa";
+import { FiGlobe } from "react-icons/fi";
+import { 
+  CalendarCheck, 
+  ShoppingBag, 
+  MapPin 
 } from "lucide-react";
 
 export default function Home() {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [isPlaying, setIsPlaying] = useState(false);
 
-  // Функция запуска видео и включения видимости
   const handleLastAnimation = () => {
     if (videoRef.current) {
-      videoRef.current.play();
-      setIsPlaying(true); // Активируем fade-in
+      videoRef.current.play()
+        .then(() => setIsPlaying(true))
+        .catch(() => setIsPlaying(true));
     }
   };
 
   return (
-    <main className="min-h-screen relative overflow-hidden text-white flex justify-center bg-black">
+    <main className="h-[100dvh] w-full relative overflow-hidden text-white flex flex-col items-center justify-center bg-black font-sans">
 
       {/* 🎥 VIDEO BACKGROUND */}
       <video
@@ -33,8 +37,7 @@ export default function Home() {
         muted
         loop
         playsInline
-        /* transition-opacity задает плавность, duration-1000 — это 1 секунда */
-        className={`absolute inset-0 w-full h-full object-cover brightness-75 scale-105 transition-opacity duration-1000 ease-in-out ${
+        className={`absolute inset-0 w-full h-full object-cover brightness-[0.55] transition-opacity duration-[1500ms] ease-in-out ${
           isPlaying ? "opacity-100" : "opacity-0"
         }`}
       >
@@ -42,79 +45,83 @@ export default function Home() {
       </video>
 
       {/* CONTENT */}
-      <div className="relative w-full max-w-md px-5 py-10 z-10">
+      <div className="relative w-full max-w-md px-6 z-10 flex flex-col h-full justify-center py-8">
 
-        {/* LOGO */}
-        <div className="flex text-center justify-center mb-6 opacity-0 animate-fade-scale" style={{ animationFillMode: 'forwards' }}>
-          <div className="w-28 h-28 rounded-full bg-black/60 backdrop-blur-md flex items-center justify-center shadow-xl border border-white/10">
-            <span className="text-4xl font-serif tracking-wider">
-              MK
-              <span className="block text-sm tracking-[0.4em] text-center">
-                STUDIO
-              </span>
-            </span>
+        {/* LOGO IMAGE */}
+        <div className="flex justify-center mb-6 opacity-0 animate-fade-scale" style={{ animationFillMode: 'forwards' }}>
+          <div className="relative w-28 h-28 rounded-full overflow-hidden bg-black/40 backdrop-blur-xl shadow-2xl border border-white/10">
+            <Image
+              src="/logo_brand.jpeg" // Путь к вашему файлу в public/
+              alt="MK Studio Logo"
+              fill
+              className="object-cover"
+              priority // Загружать сразу
+            />
           </div>
         </div>
 
-        {/* TITLE */}
-        <h1 className="text-center text-3xl font-bold mb-2 opacity-0 animate-fade-up delay-300" style={{ animationFillMode: 'forwards' }}>
-          MK Studio
-        </h1>
+        {/* TITLE & SUBTITLE */}
+        <div className="text-center mb-8">
+          <h1 className="text-2xl font-bold mb-2 opacity-0 animate-fade-up delay-300" style={{ animationFillMode: 'forwards' }}>
+            MK Studio
+          </h1>
+          <p className="text-sm text-gray-200 leading-snug opacity-0 animate-fade-up delay-500" style={{ animationFillMode: 'forwards' }}>
+            Barber in Offenbach am Main <br />
+            Modern fades & beard styling <br /><br />
+            <span className="text-[10px] opacity-60 uppercase tracking-[0.2em]">We speak</span><br />
+            🇩🇪 DE • 🇬🇧 EN • 🇺🇦 UKR • 🇷🇺 RU
+          </p>
+        </div>
 
-        {/* SUBTITLE */}
-        <p className="text-center text-gray-200 leading-relaxed opacity-0 animate-fade-up delay-600" style={{ animationFillMode: 'forwards' }}>
-          Barber in Offenbach am Main <br />
-          Modern fades & beard styling <br /><br />
-          We speak <br />
-          🇩🇪 DE • 🇬🇧 EN • 🇺🇦 UKR • 🇷🇺 RU
-        </p>
+        {/* 📱 SOCIAL ICONS */}
+        <div className="flex justify-center items-center gap-7 mb-10 opacity-0 animate-fade-up delay-700" style={{ animationFillMode: 'forwards' }}>
+          <Link href="https://instagram.com" target="_blank" className="p-2 text-gray-200 hover:text-white transition-all active:scale-90">
+            <FaInstagram size={24} />
+          </Link>
 
-        {/* SOCIAL ICONS */}
-        <div className="flex justify-center gap-8 mt-6 mb-8 text-gray-200 opacity-0 animate-fade-up delay-900" style={{ animationFillMode: 'forwards' }}>
-          <Link href="https://instagram.com" target="_blank" className="hover:text-white transition-colors">
-            <Instagram size={28} />
+          <Link href="https://t.me" target="_blank" className="p-2 text-gray-200 hover:text-white transition-all active:scale-90">
+            <FaTelegramPlane size={24} />
           </Link>
-          <Link href="https://t.me" target="_blank" className="hover:text-white transition-colors">
-            <Send size={28} />
+
+          <Link href="https://wa.me" target="_blank" className="p-2 text-gray-200 hover:text-white transition-all active:scale-90">
+            <FaWhatsapp size={24} />
           </Link>
-          <Link href="https://wa.me/1234567890" target="_blank" className="hover:text-white transition-colors">
-            <Phone size={28} />
+
+          <Link href="https://yourwebsite.com" target="_blank" className="p-2 text-gray-200 hover:text-white transition-all active:scale-90">
+            <FiGlobe size={24} />
           </Link>
         </div>
 
-        {/* BUTTONS CONTAINER */}
+        {/* 🔗 BUTTONS */}
         <div 
-          className="space-y-4 opacity-0 animate-fade-up delay-[1200ms]" 
+          className="space-y-3.5 opacity-0 animate-fade-up delay-[1000ms]" 
           style={{ animationFillMode: 'forwards' }}
           onAnimationEnd={handleLastAnimation}
         >
-          {/* BOOK */}
           <Link
             href="https://fresha.com"
             target="_blank"
-            className="flex items-center justify-center gap-3 w-full bg-white/[0.08] backdrop-blur-[40px] border border-white/20 text-white py-5 rounded-2xl text-lg font-medium hover:bg-white/10 transition-all shadow-2xl"
+            className="flex items-center justify-center gap-3 w-full bg-white/15 backdrop-blur-2xl border border-white/20 text-white py-4 rounded-2xl text-lg font-semibold active:scale-[0.98] transition-all shadow-xl"
           >
-            <CalendarCheck size={22} />
+            <CalendarCheck size={20} />
             Book an Appointment
           </Link>
 
-          {/* SHOP */}
           <Link
             href="#"
             target="_blank"
-            className="flex items-center justify-center gap-3 w-full bg-white/[0.08] backdrop-blur-[40px] border border-white/20 text-white py-5 rounded-2xl text-lg font-medium hover:bg-white/10 transition-all shadow-2xl"
+            className="flex items-center justify-center gap-3 w-full bg-white/[0.06] backdrop-blur-xl border border-white/10 text-white py-4 rounded-2xl text-base font-medium active:scale-[0.98] transition-all"
           >
-            <ShoppingBag size={22} />
+            <ShoppingBag size={20} />
             Products Shop
           </Link>
 
-          {/* LOCATION */}
           <Link
             href="https://maps.google.com"
             target="_blank"
-            className="flex items-center justify-center gap-3 w-full bg-white/[0.08] backdrop-blur-[40px] border border-white/20 text-white py-5 rounded-2xl text-lg font-medium hover:bg-white/10 transition-all shadow-2xl"
+            className="flex items-center justify-center gap-3 w-full bg-white/[0.06] backdrop-blur-xl border border-white/10 text-white py-4 rounded-2xl text-base font-medium active:scale-[0.98] transition-all"
           >
-            <MapPin size={22} />
+            <MapPin size={20} />
             Location on Maps
           </Link>
         </div>

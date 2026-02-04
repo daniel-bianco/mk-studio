@@ -1,11 +1,22 @@
-// components/FloatingSocials.tsx
+"use client"; // Обязательно, так как используем хук
+
+import { usePathname } from "next/navigation";
 import { FaInstagram, FaWhatsapp } from "react-icons/fa";
 import { RiTelegram2Fill } from "react-icons/ri";
 
 export default function FloatingSocials() {
+  const pathname = usePathname();
+
+  // Список путей, на которых кнопки НЕ должны отображаться
+  const hiddenRoutes = ["/links"];
+
+  // Если текущий путь есть в списке, возвращаем null (ничего не рендерим)
+  if (hiddenRoutes.includes(pathname)) {
+    return null;
+  }
+
   return (
     <div className="fixed right-6 bottom-6 z-[9999] flex flex-col gap-4">
-      
       {/* Instagram */}
       <a
         href="https://instagram.com/yourname"
@@ -41,7 +52,6 @@ export default function FloatingSocials() {
       >
         <FaWhatsapp size={20} />
       </a>
-
     </div>
   );
 }
